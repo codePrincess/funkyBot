@@ -1,0 +1,42 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "servers_mytrekkapoc_name": {
+            "value": null
+        },
+        "storageAccounts_mytrekkafunca18d_name": {
+            "value": null
+        },
+        "serverfarms_NorthEuropePlan_name": {
+            "value": null
+        },
+        "sites_mytrekkafunc_name": {
+            "value": null
+        },
+        "sites_mymobiletrekka_name": {
+            "value": null
+        },
+        "sites_mytrekka_name": {
+            "value": null
+        },
+        "databases_master_name": {
+            "value": null
+        },
+        "databases_mytrekka_name": {
+            "value": null
+        },
+        "firewallRules_AllowAllWindowsAzureIps_name": {
+            "value": null
+        },
+        "firewallRules_ClientMSMunchen_name": {
+            "value": null
+        },
+        "sites_mymobiletrekka_serverFarmId": {
+            "value": null
+        },
+        "sites_mytrekka_serverFarmId": {
+            "value": null
+        }
+    }
+}

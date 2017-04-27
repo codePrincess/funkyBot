@@ -39,7 +39,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, Stream
         StatusCode = HttpStatusCode.OK
     };
 
-    string baseURL = "https://mytrekkafunca18d.blob.core.windows.net";
+    string baseURL = "https://MYCONTAINERNAME.blob.core.windows.net";
     string originalBaseURL = $"{baseURL}/uploads";
     string returnValue = $"{originalBaseURL}/{filename}/{name}";
 

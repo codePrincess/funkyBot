@@ -8,7 +8,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     dynamic data = req.Content.ReadAsAsync<object>().Result;
     string id = Convert.ToString(data?.id);
 
-    MobileServiceClient client = new MobileServiceClient("https://mymobiletrekka.azurewebsites.net");
+    MobileServiceClient client = new MobileServiceClient("https://xxx.azurewebsites.net");
     IMobileServiceTable trekkaTable = client.GetTable("Trekka");
 
     var item = await trekkaTable.LookupAsync(id);

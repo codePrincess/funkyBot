@@ -1,0 +1,306 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "servers_mytrekkapoc_name": {
+            "defaultValue": "mytrekkapoc",
+            "type": "String"
+        },
+        "storageAccounts_mytrekkafunca18d_name": {
+            "defaultValue": "mytrekkafunca18d",
+            "type": "String"
+        },
+        "serverfarms_NorthEuropePlan_name": {
+            "defaultValue": "NorthEuropePlan",
+            "type": "String"
+        },
+        "sites_mytrekkafunc_name": {
+            "defaultValue": "mytrekkafunc",
+            "type": "String"
+        },
+        "sites_mymobiletrekka_name": {
+            "defaultValue": "mymobiletrekka",
+            "type": "String"
+        },
+        "sites_mytrekka_name": {
+            "defaultValue": "mytrekka",
+            "type": "String"
+        },
+        "databases_master_name": {
+            "defaultValue": "mytrekkapoc/master",
+            "type": "String"
+        },
+        "databases_mytrekka_name": {
+            "defaultValue": "mytrekkapoc/mytrekka",
+            "type": "String"
+        },
+        "firewallRules_AllowAllWindowsAzureIps_name": {
+            "defaultValue": "mytrekkapoc/AllowAllWindowsAzureIps",
+            "type": "String"
+        },
+        "firewallRules_ClientMSMunchen_name": {
+            "defaultValue": "mytrekkapoc/ClientMSMunchen",
+            "type": "String"
+        },
+        "sites_mymobiletrekka_serverFarmId": {
+            "defaultValue": "/subscriptions/3d24ddd6-7960-4073-aa3b-45cb236e0159/resourceGroups/todoappl/providers/Microsoft.Web/serverfarms/mytodoappl",
+            "type": "String"
+        },
+        "sites_mytrekka_serverFarmId": {
+            "defaultValue": "/subscriptions/3d24ddd6-7960-4073-aa3b-45cb236e0159/resourceGroups/todoappl/providers/Microsoft.Web/serverfarms/mytodoappl",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/3d24ddd6-7960-4073-aa3b-45cb236e0159/resourceGroups/thetrekka/providers/Microsoft.Sql/servers/mytrekkapoc'.",
+            "type": "Microsoft.Sql/servers",
+            "kind": "v12.0",
+            "name": "[parameters('servers_mytrekkapoc_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West Europe",
+            "properties": {
+                "administratorLogin": "Martin",
+                "administratorLoginPassword": null,
+                "version": "12.0"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/3d24ddd6-7960-4073-aa3b-45cb236e0159/resourceGroups/thetrekka/providers/Microsoft.Storage/storageAccounts/mytrekkafunca18d'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_mytrekkafunca18d_name')]",
+            "apiVersion": "2016-01-01",
+            "location": "northeurope",
+            "tags": {},
+            "properties": {},
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/3d24ddd6-7960-4073-aa3b-45cb236e0159/resourceGroups/thetrekka/providers/Microsoft.Web/serverfarms/NorthEuropePlan'.",
+            "type": "Microsoft.Web/serverfarms",
+            "sku": {
+                "name": "Y1",
+                "tier": "Dynamic",
+                "size": "Y1",
+                "family": "Y",
+                "capacity": 0
+            },
+            "kind": "functionapp",
+            "name": "[parameters('serverfarms_NorthEuropePlan_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "North Europe",
+            "properties": {
+                "name": "[parameters('serverfarms_NorthEuropePlan_name')]",
+                "numberOfWorkers": 0
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/3d24ddd6-7960-4073-aa3b-45cb236e0159/resourceGroups/thetrekka/providers/Microsoft.Web/sites/mytrekkafunc'.",
+            "type": "Microsoft.Web/sites",
+            "kind": "functionapp",
+            "name": "[parameters('sites_mytrekkafunc_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "North Europe",
+            "properties": {
+                "name": "[parameters('sites_mytrekkafunc_name')]",
+                "hostNames": [
+                    "mytrekkafunc.azurewebsites.net"
+                ],
+                "enabledHostNames": [
+                    "mytrekkafunc.azurewebsites.net",
+                    "mytrekkafunc.scm.azurewebsites.net"
+                ],
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('sites_mytrekkafunc_name'),'.azurewebsites.net')]",
+                        "sslState": 0,
+                        "thumbprint": null,
+                        "ipBasedSslState": 0
+                    },
+                    {
+                        "name": "[concat(parameters('sites_mytrekkafunc_name'),'.scm.azurewebsites.net')]",
+                        "sslState": 0,
+                        "thumbprint": null,
+                        "ipBasedSslState": 0
+                    }
+                ],
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_NorthEuropePlan_name'))]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_NorthEuropePlan_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/3d24ddd6-7960-4073-aa3b-45cb236e0159/resourceGroups/thetrekka/providers/Microsoft.Web/sites/mymobiletrekka'.",
+            "type": "Microsoft.Web/sites",
+            "kind": "mobileapp",
+            "name": "[parameters('sites_mymobiletrekka_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "West Europe",
+            "tags": {
+                "hidden-related:/subscriptions/3d24ddd6-7960-4073-aa3b-45cb236e0159/resourcegroups/todoappl/providers/Microsoft.Web/serverfarms/mytodoappl": "empty"
+            },
+            "properties": {
+                "name": "[parameters('sites_mymobiletrekka_name')]",
+                "hostNames": [
+                    "mymobiletrekka.azurewebsites.net"
+                ],
+                "enabledHostNames": [
+                    "mymobiletrekka.azurewebsites.net",
+                    "mymobiletrekka.scm.azurewebsites.net"
+                ],
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('sites_mymobiletrekka_name'),'.azurewebsites.net')]",
+                        "sslState": 0,
+                        "thumbprint": null,
+                        "ipBasedSslState": 0
+                    },
+                    {
+                        "name": "[concat(parameters('sites_mymobiletrekka_name'),'.scm.azurewebsites.net')]",
+                        "sslState": 0,
+                        "thumbprint": null,
+                        "ipBasedSslState": 0
+                    }
+                ],
+                "serverFarmId": "[parameters('sites_mymobiletrekka_serverFarmId')]"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/3d24ddd6-7960-4073-aa3b-45cb236e0159/resourceGroups/thetrekka/providers/Microsoft.Web/sites/mytrekka'.",
+            "type": "Microsoft.Web/sites",
+            "kind": "mobileapp",
+            "name": "[parameters('sites_mytrekka_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "West Europe",
+            "tags": {
+                "hidden-related:/subscriptions/3d24ddd6-7960-4073-aa3b-45cb236e0159/resourcegroups/todoappl/providers/Microsoft.Web/serverfarms/mytodoappl": "empty"
+            },
+            "properties": {
+                "name": "[parameters('sites_mytrekka_name')]",
+                "hostNames": [
+                    "mytrekka.azurewebsites.net"
+                ],
+                "enabledHostNames": [
+                    "mytrekka.azurewebsites.net",
+                    "mytrekka.scm.azurewebsites.net"
+                ],
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('sites_mytrekka_name'),'.azurewebsites.net')]",
+                        "sslState": 0,
+                        "thumbprint": null,
+                        "ipBasedSslState": 0
+                    },
+                    {
+                        "name": "[concat(parameters('sites_mytrekka_name'),'.scm.azurewebsites.net')]",
+                        "sslState": 0,
+                        "thumbprint": null,
+                        "ipBasedSslState": 0
+                    }
+                ],
+                "serverFarmId": "[parameters('sites_mytrekka_serverFarmId')]"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/3d24ddd6-7960-4073-aa3b-45cb236e0159/resourceGroups/thetrekka/providers/Microsoft.Sql/servers/mytrekkapoc/databases/master'.",
+            "type": "Microsoft.Sql/servers/databases",
+            "kind": "v12.0,system",
+            "name": "[parameters('databases_master_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West Europe",
+            "properties": {
+                "databaseId": "c2d87571-7273-4cda-8dfa-f239eac5c02b",
+                "edition": "Basic",
+                "status": "Online",
+                "serviceLevelObjective": "Basic",
+                "collation": "SQL_Latin1_General_CP1_CI_AS",
+                "maxSizeBytes": "2147483648",
+                "creationDate": "2017-04-25T13:08:56.897Z",
+                "currentServiceObjectiveId": "dd6d99bb-f193-4ec1-86f2-43d3bccbc49c",
+                "requestedServiceObjectiveId": "dd6d99bb-f193-4ec1-86f2-43d3bccbc49c",
+                "requestedServiceObjectiveName": "Basic",
+                "sampleName": null,
+                "defaultSecondaryLocation": "North Europe",
+                "earliestRestoreDate": null,
+                "elasticPoolName": null,
+                "containmentState": 2,
+                "readScale": "Disabled",
+                "failoverGroupId": null
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_mytrekkapoc_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/3d24ddd6-7960-4073-aa3b-45cb236e0159/resourceGroups/thetrekka/providers/Microsoft.Sql/servers/mytrekkapoc/databases/mytrekka'.",
+            "type": "Microsoft.Sql/servers/databases",
+            "kind": "v12.0,user",
+            "name": "[parameters('databases_mytrekka_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West Europe",
+            "properties": {
+                "databaseId": "6da6b4fb-1de6-4cf9-8211-2c7faa2a7682",
+                "edition": "Basic",
+                "status": "Online",
+                "serviceLevelObjective": "Basic",
+                "collation": "SQL_Latin1_General_CP1_CI_AS",
+                "maxSizeBytes": "104857600",
+                "creationDate": "2017-04-25T13:22:53.51Z",
+                "currentServiceObjectiveId": "dd6d99bb-f193-4ec1-86f2-43d3bccbc49c",
+                "requestedServiceObjectiveId": "dd6d99bb-f193-4ec1-86f2-43d3bccbc49c",
+                "requestedServiceObjectiveName": "Basic",
+                "sampleName": null,
+                "defaultSecondaryLocation": "North Europe",
+                "earliestRestoreDate": "2017-04-25T13:33:45.17Z",
+                "elasticPoolName": null,
+                "containmentState": 2,
+                "readScale": "Disabled",
+                "failoverGroupId": null
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_mytrekkapoc_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/3d24ddd6-7960-4073-aa3b-45cb236e0159/resourceGroups/thetrekka/providers/Microsoft.Sql/servers/mytrekkapoc/firewallRules/AllowAllWindowsAzureIps'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "kind": "v12.0",
+            "name": "[parameters('firewallRules_AllowAllWindowsAzureIps_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West Europe",
+            "properties": {
+                "startIpAddress": "0.0.0.0",
+                "endIpAddress": "0.0.0.0"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_mytrekkapoc_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/3d24ddd6-7960-4073-aa3b-45cb236e0159/resourceGroups/thetrekka/providers/Microsoft.Sql/servers/mytrekkapoc/firewallRules/ClientMSMunchen'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "kind": "v12.0",
+            "name": "[parameters('firewallRules_ClientMSMunchen_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West Europe",
+            "properties": {
+                "startIpAddress": "194.69.102.0",
+                "endIpAddress": "194.69.102.255"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_mytrekkapoc_name'))]"
+            ]
+        }
+    ]
+}
