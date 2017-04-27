@@ -1,0 +1,23 @@
+{
+  "bindings": [
+    {
+      "authLevel": "function",
+      "name": "req",
+      "type": "httpTrigger",
+      "direction": "in"
+    },
+    {
+      "name": "$return",
+      "type": "http",
+      "direction": "out"
+    },
+    {
+      "type": "mobileTable",
+      "name": "output",
+      "tableName": "Trekka",
+      "connection": "MobileAppURL",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}
