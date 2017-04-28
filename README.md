@@ -1,1 +1,3 @@
 # funkyBot
+
+## Function Description ##
